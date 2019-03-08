@@ -1,0 +1,25 @@
+# This is an ansible-playbook to launch firefox inside the docker container
+# The docker host where our playbook will run is named conatiner and the dns is already setup
+# The path of dockerfile on the docker host in mentioned as /root/Desktop/code/Dockerfile_firefox
+# The firsr step is to complete the building of image with the dockerfile
+- hosts: container
+  tasks:
+   - include_vars: var.yml
+   - name: "Using Dockerfile"
+     docker_image:
+        dockerfile: "Dockerfile_firefox"
+        name: cfire:v1
+        path: "{{ loc }}"
+        state: present
+   - name: "Docker Containter"
+     docker_container: 
+       interactive: yes
+       tty: yes
+       image: cfire:v1
+       name: cf1
+       env:
+         DISPLAY: ":0"
+       volumes: 
+        - /tmp/.X11-unix:/tmp/.X11-unix:rw
+
+

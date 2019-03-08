@@ -1,0 +1,15 @@
+FROM centos:latest
+
+MAINTAINER Vedant
+
+RUN yum install firefox -y
+
+RUN yum install dbus-x11 -y
+
+RUN export DISPLAY=:0
+
+RUN echo -e "export DISPLAY=:0" >> /root/.bashrc
+
+RUN dbus-uuidgen > /etc/machine-id
+
+CMD /usr/bin/firefox https://www.google.com/maps/
