@@ -1,1 +1,2 @@
-loc: /root/Desktop/code/
+# Enter the location on the localhost or the container host where you have your Dockerfile
+loc: /root/firefox/

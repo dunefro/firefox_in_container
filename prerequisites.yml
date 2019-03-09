@@ -1,0 +1,27 @@
+# This is an ansible-playbook to just configure the docker service as running.
+- hosts: localhost
+  tasks:
+   - name: "Turning Selinux Off"
+     selinux:
+       policy: targeted
+       state: permissive
+   - name: "Disbale Firewall"
+     service:
+       name: firewalld
+       state: stopped
+   - name: "Installing Docker"
+     package:
+       name: docker-ce
+       state: present
+   - name: "Restart Docker service"
+     service:
+       name: docker
+       state: restarted
+       enabled: yes
+   - name: "Docker"
+     package:
+       name: python2-pip
+       state: present
+   - pip:
+       name: docker-py
+
