@@ -9,7 +9,6 @@
      docker_image:
         dockerfile: "Dockerfile_firefox"
         name: cfire:v1
-        pull: no
         path: /root/firefox/
         state: present
    - name: "Docker Containter"
