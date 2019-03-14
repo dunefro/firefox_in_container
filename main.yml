@@ -5,12 +5,6 @@
 - hosts: localhost
   tasks:
    - include_vars: var.yml
-   - name: "Tar Image"
-     docker_image:
-       load_path: centos-latest.tar
-       name: centos:latest
-       state: present
-     ignore_errors: yes
    - name: "Using Dockerfile"
      docker_image:
         dockerfile: "Dockerfile_firefox"
